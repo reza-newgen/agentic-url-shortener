@@ -1,0 +1,36 @@
+services:
+  db:
+    image: postgres:16
+    environment:
+      POSTGRES_DB: agentic
+      POSTGRES_USER: agentic
+      POSTGRES_PASSWORD: agentic
+    ports: ["5432:5432"]
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U agentic"]
+      interval: 5s
+      retries: 12
+  redis:
+    image: redis:7-alpine
+    ports: ["6379:6379"]
+  ollama:
+    image: ollama/ollama:latest
+    ports: ["11434:11434"]
+    volumes: ["ollama_models:/root/.ollama"]
+  app:
+    build: .
+    ports: ["8080:8080"]
+    depends_on:
+      db:
+        condition: service_healthy
+      redis:
+        condition: service_started
+      ollama:
+        condition: service_started
+    environment:
+      DB_URL: jdbc:postgresql://db:5432/agentic
+      REDIS_HOST: redis
+      OLLAMA_URL: http://ollama:11434
+      REVIEW_PASSWORD: ${REVIEW_PASSWORD:-change-me-before-deploy}
+volumes:
+  ollama_models:

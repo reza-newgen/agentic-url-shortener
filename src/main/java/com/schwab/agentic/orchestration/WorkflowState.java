@@ -1,0 +1,4 @@
+package com.schwab.agentic.orchestration;
+
+
+public enum WorkflowState {CREATED, ANALYZING, PLANNING, AWAITING_APPROVAL, RUNNING, REVIEWING, READY_FOR_RELEASE, COMPLETED, FAILED, STOPPED, ROLLED_BACK}

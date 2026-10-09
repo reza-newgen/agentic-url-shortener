@@ -1,0 +1,4 @@
+create table url_link (id bigserial primary key, code varchar(32) unique not null, original_url text not null, created_at timestamptz not null default now(), expires_at timestamptz, clicks bigint not null default 0);
+create table workflow_run (id uuid primary key, requirement text not null, scenario varchar(32) not null, state varchar(32) not null, revision integer not null default 0, plan_json text, report text, created_at timestamptz not null, updated_at timestamptz not null);
+create table workflow_task (id bigserial primary key, run_id uuid not null references workflow_run(id), task_key varchar(64) not null, task_state varchar(32) not null, artifact text, retries integer not null default 0, unique(run_id,task_key));
+create table audit_event (id bigserial primary key, run_id uuid not null, event_time timestamptz not null, actor varchar(80) not null, action varchar(128) not null, details text not null);

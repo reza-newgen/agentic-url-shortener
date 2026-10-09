@@ -1,0 +1,46 @@
+server:
+  port: 8080
+spring:
+  application:
+    name: agentic-url-shortener
+  datasource:
+    url: ${DB_URL:jdbc:postgresql://127.0.0.1:5432/agentic_urlshort_db}
+    username: ${DB_USER:rag}
+    password: ${DB_PASSWORD:rag}
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    hibernate:
+      ddl-auto: validate
+    open-in-view: false
+  flyway:
+    enabled: true
+  data:
+    redis:
+      host: ${REDIS_HOST:localhost}
+      port: ${REDIS_PORT:6379}
+  ai:
+    ollama:
+      base-url: ${OLLAMA_URL:http://localhost:11434}
+      chat:
+        options:
+          model: ${OLLAMA_MODEL:llama3.2}
+    model:
+      embedding: none
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,metrics,prometheus
+  endpoint:
+    health:
+      show-details: when_authorized
+
+agentic:
+  mode: ${AGENTIC_MODE:ollama}
+  workspace: ${AGENTIC_WORKSPACE:/tmp/agentic-workspace}
+  task-timeout-seconds: 300
+  reviewer:
+    username: ${REVIEW_USER:reviewer}
+    password: ${REVIEW_PASSWORD:change-me-before-deploy}
+
