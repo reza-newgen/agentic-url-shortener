@@ -1,4 +1,4 @@
-# Schwab Agentic Software Engineering System — URL Shortener
+# Agentic URL Shortener
 
 Java 21, Spring Boot 4.1.1, Spring AI 2.0.1, Ollama, PostgreSQL, Redis, Spring Security, Flyway, REST, OpenAPI, Actuator, Micrometer, JUnit, Mockito and Testcontainers.
 
