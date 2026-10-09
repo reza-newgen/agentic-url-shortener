@@ -50,4 +50,78 @@ Set `AGENTIC_MODE=demo` to run with deterministic responses and without making m
 
 Swagger: http://localhost:8080/swagger-ui/index.html — Metrics: http://localhost:8080/actuator/prometheus
 
-**Honest scope:** This educational working prototype orchestrates AI-generated review artifacts, not automated repository mutations or production deployment. See docs/engineering-summary.md for capability/limitation details.
+
+1Build and Run Application
+
+
+mvn clean package -DskipTests
+
+mvn spring-boot:run
+
+
+![agentic-url-shortener-running](docs/agentic-url-shortener-running.png)
+
+
+🧪 Testing
+
+Run automated unit and integration tests:
+
+mvn test
+
+
+
+
+
+
+
+
+Project Screenshots
+
+1. Swagger UI – REST API Documentation
+
+![swagger-ui](docs/swagger-ui.png)
+
+
+
+2. Agentic Workflow Creation
+
+![create-workflow](docs/create-workflow.png)
+
+
+
+3. Requirement Analysis Agent
+
+![get-tasks](docs/get-tasks.png)
+
+![workflow-2](docs/workflow-2.png)
+
+
+
+4. Planning Agent
+
+![get-tasks](docs/get-tasks.png)
+
+
+![workflow-task2](docs/workflow-task2.png)
+
+5. Human Approval Checkpoint
+
+![workflow-approve](workflow-approve)
+
+
+
+6. Automatic Agent Execution
+
+![aduit-workflow](docs/aduit-workflow.png)
+
+![workflow-audit-2](docs/workflow-audit-2.png)
+
+7. URL Shortener API
+   ![urlshortner](docs/urlshortner.png)
+
+
+
+
+8. URL Analytics
+
+![urlshortner analytics](docs/urlshortner analytics.png)
